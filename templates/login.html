@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="column is-4 is-offset-4">
+    <h3 class="title">Вход</h3>
+    <div class="box">
+        <form method="POST" action="/login">
+            <div class="mb-3">
+                <input name="login" placeholder="Логин" autofocus="" class="form-control">
+            </div>
+            <div class="mb-3">
+                <input type="password" name="password" placeholder="Пароль" class="form-control">
+            </div>
+            <button class="btn btn-light">Войти</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

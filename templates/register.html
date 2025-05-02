@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="column is-4 is-offset-4">
+    <h3 class="title">Регистрация</h3>
+    {% if message %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endif %}
+    <div class="box">
+        <form method="POST" action="/register">
+            <div class="mb-3">
+                <input name="login" placeholder="Логин" autofocus="" class="form-control">
+            </div>
+            <div class="mb-3">
+                <input name="fio" placeholder="ФИ(О) (укажите настоящие)" autofocus="" class="form-control">
+            </div>
+            <div class="mb-3">
+                <input name="clss" placeholder="Класс (укажите настоящий)" autofocus="" class="form-control">
+            </div>
+            <div class="mb-3">
+                <input type="password" name="password" placeholder="Пароль" class="form-control">
+            </div>
+            <div class="mb-3">
+                {{ captcha_html(captcha)|safe }}
+            </div>
+            <button class="btn btn-light">Зарегистироваться</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

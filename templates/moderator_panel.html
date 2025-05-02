@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="column is-4 is-offset-4">
+    <h3 class="title">Начисление (или обмен налички)</h3>
+    {% if message %}
+        {% if alert %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+        {% else %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+        {% endif %}
+    {% endif %}
+    <div class="box">
+        <form method="POST" action="/mod">
+            <div class="form-group">
+                <input name="id" placeholder="ID получателя" autofocus="" class="form-control" type='number'>
+            </div>
+            <div class="form-group">
+                <input name="amount" placeholder="Количество {{ consts.coin_name_out_link }}" class="form-control" type='number'>
+            </div>
+            <button class="btn btn-light">Совершить обмен</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

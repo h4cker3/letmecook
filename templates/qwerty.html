@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>БД коннектор</h3>
+<form method="POST" action="/qwerty">
+    <div class="mb-3">
+        <input name="quest" placeholder="Запрос" autofocus="" class="form-control">
+    </div>
+    <div class="form-check">
+    <input class="form-check-input" type="checkbox" name="answered" id="flexCheckDefault">
+    <label class="form-check-label" for="flexCheckDefault">
+        Ждать ответ?
+    </label>
+    </div>
+    <button class="btn btn-outline-primary">Выполнить</button>
+</form>
+{% if res %}
+<h4>Ответ:</h4>
+<table class="table">
+    <thead>
+    <tr>
+    {% for e in res["head"] %}
+        <td>{{ e }}</td>
+    {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+    {% for elem in res["body"] %}
+    <tr>
+        {% for e in elem %}
+        <td>{{ e }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{% endblock %}

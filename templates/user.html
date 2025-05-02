@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ res['name'] }}</h1>
+<div class="alert alert-dark" role="alert">
+    Твой ID: {{ res['id'] }}. Уровень доступа: {{ res['role'] }}.
+</div>
+<h3>Твой баланс {{ consts.coin_name|safe }}: {{ res['balance'] }}</h3>
+<h3>Транзакции: (последние 20)</h3>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Отправитель</th>
+        <th scope="col">Получатель</th>
+        <th scope="col">Сумма</th>
+        <th scope="col">Тип</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for e in res["trns"] %}
+    <tr>
+        <td>{{ e['in'] }}</td>
+        <td>{{ e['out'] }}</td>
+        <td>{{ e['amount'] }}</td>
+        <td>{{ e['reason'] }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

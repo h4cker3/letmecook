@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Данные пользователя id={{ res['id'] }}</h3>
+<h4>ФИО: {{ res['name'] }}</h4>
+<h4>Уровень доступа: {{ res['role'] }}.</h4>
+<h4>Баланс {{ consts.coin_name|safe }}: {{ res['balance'] }}</h4>
+{% if can %}
+<form method="POST" action="/user/{{ res['id'] }}">
+    <div class="input-group mb-3">
+    <select name="mode" class="form-control">
+      <option selected>(1) Повысить до модератора</option>
+      <option>(2) Понизить до участника</option>
+      <option>(3) Удалить аккаунт</option>
+    </select>
+    <button class="btn btn-outline-primary">Выполнить</button>
+    </div>
+</form>
+{% endif %}
+<h4>Транзакции: (пока в тестовом режиме)</h4>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Отправитель</th>
+        <th scope="col">Получатель</th>
+        <th scope="col">Сумма</th>
+        <th scope="col">Тип</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for e in res["trns"] %}
+    <tr>
+        <td>{{ e['in'] }}</td>
+        <td>{{ e['out'] }}</td>
+        <td>{{ e['amount'] }}</td>
+        <td>{{ e['reason'] }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
